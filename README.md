@@ -80,13 +80,13 @@ Document completed implementation work with what was done, how, why, and files t
 
 ## Installation
 
-Copy skills to your agent's skills directory:
+Install using the [skills CLI](https://skills.sh):
 
 ```bash
-cp -r skills/{skill-name} ~/.claude/skills/
+npx skills add frueda/agent-skills
 ```
 
-Or reference directly in your project's agent configuration.
+The skills CLI works with: Amp, Antigravity, Claude Code, Clawdbot, Codex, Cursor, Droid, Gemini, Gemini CLI, GitHub Copilot, Goose, Kilo, Kiro CLI, OpenCode, Roo, Trae, and Windsurf.
 
 ## Usage
 
