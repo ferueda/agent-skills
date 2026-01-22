@@ -83,7 +83,7 @@ Document completed implementation work with what was done, how, why, and files t
 Install using the [skills CLI](https://skills.sh):
 
 ```bash
-npx skills add frueda/agent-skills
+npx skills add ferueda/agent-skills
 ```
 
 The skills CLI works with: Amp, Antigravity, Claude Code, Clawdbot, Codex, Cursor, Droid, Gemini, Gemini CLI, GitHub Copilot, Goose, Kilo, Kiro CLI, OpenCode, Roo, Trae, and Windsurf.
