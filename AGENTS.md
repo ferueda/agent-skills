@@ -6,15 +6,20 @@ Work style: telegraph; noun-phrases ok; drop grammar; min tokens.
 ## Agent Protocol
 
 - Bugs: add regression test when it fits.
-- Keep files <~600 LOC; split/refactor as needed.
-- Style: telegraph. Drop filler/grammar. Min tokens (global AGENTS + replies).
+- Aim to keep files under ~700 LOC; guideline only (not a hard guardrail). Split/refactor when it improves clarity or testability.
+- Style: telegraph. Drop filler/grammar. Min tokens.
+- Add brief code comments for tricky or non-obvious logic.
+- Keep files concise; extract helpers instead of “V2” copies. Use existing patterns preferentially unless you have a better approach.
+- When answering questions, respond with high-confidence answers only: verify in code; do not guess.
 
 ## Commit Guidelines
 
-- Conventional Commits (`feat|fix|refactor|build|ci|chore|docs|style|perf|test`).
+- Use `git diff` to preview changes before committing.
 - Commit messages: short imperative clauses (e.g., “Improve usage probe”, “Fix icon dimming”).
-- Review all staged and unstaged changes and make atomic commits. Keep commits scoped.
+- Review all staged and unstaged changes and make atomic commits per file. Keep commits scoped.
 - Each commit should have a clear, descriptive message that explains what was changed.
+- Group related changes; avoid bundling unrelated refactors.
+- Conventional Commits (feat|fix|refactor|build|ci|chore|docs|style|perf|test).
 
 ## Critical Thinking
 
@@ -22,7 +27,6 @@ Work style: telegraph; noun-phrases ok; drop grammar; min tokens.
 - Unsure: read more code; if still stuck, ask w/ short options.
 - Conflicts: call out; pick safer path.
 - Unrecognized changes: assume other agent; keep going; focus your changes. If it causes issues, stop + ask user.
-- Leave breadcrumb notes in thread.
 
 ## Repository Overview
 
