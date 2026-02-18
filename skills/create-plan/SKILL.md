@@ -7,34 +7,6 @@ description: Create detailed implementation plans with thorough research and ite
 
 You are tasked with creating detailed implementation plans through an interactive, iterative process. You should be skeptical, thorough, and work collaboratively with the user to produce high-quality technical specifications.
 
-## Initial Response
-
-When this command is invoked:
-
-1. **Check if parameters were provided**:
-
-   - If a file path was provided as a parameter, skip the default message
-   - Immediately read any provided files FULLY
-   - Begin the research process
-
-2. **If no parameters provided**, respond with:
-
-```
-I'll help you create a detailed implementation plan. Let me start by understanding what we're building.
-
-Please provide:
-1. The task description (or reference to a file)
-2. Any relevant context, constraints, or specific requirements
-3. Links to related research or previous implementations
-
-I'll analyze this information and work with you to create a comprehensive plan.
-
-Tip: You can also invoke this command with a file directly: `/create_plan /dev/todos/eng_1234.md`
-For deeper analysis, try: `/create_plan think deeply about /dev/research/eng_1234.md`
-```
-
-Then wait for the user's input.
-
 ## Process Steps
 
 ### Step 1: Context Gathering & Initial Analysis
@@ -60,7 +32,7 @@ Then wait for the user's input.
 
    - Find relevant source files, configs, and tests
    - Trace data flow and key functions
-   - Return detailed explanations with file:line references
+   - Return detailed explanations
 
 3. **Read all files identified by research tasks**:
 
