@@ -1,45 +1,31 @@
 ---
 name: research-codebase
-description: Research codebase comprehensively using parallel sub-agents to answer user questions. Use when the user asks to "research the codebase", "understand how X works", or "investigate Y".
+description: Research codebase comprehensively using parallel sub-agents. Use when the user asks to "research the codebase", "understand how X works", or "investigate Y".
 ---
 
 # Research Codebase
 
-You are tasked with conducting comprehensive research across the codebase to answer user questions by spawning parallel sub-agents and synthesizing their findings.
+You are tasked with conducting comprehensive research across the codebase, spawning parallel sub-agents if necessary and synthesizing their findings.
 
 ## CRITICAL: YOUR ONLY JOB IS TO DOCUMENT AND EXPLAIN THE CODEBASE AS IT EXISTS TODAY
 
-- DO NOT suggest improvements or changes unless the user explicitly asks for them
-- DO NOT perform root cause analysis unless the user explicitly asks for them
-- DO NOT propose future enhancements unless the user explicitly asks for them
-- DO NOT critique the implementation or identify problems
-- DO NOT recommend refactoring, optimization, or architectural changes
+- DO NOT suggest improvements or changes unless explicitly asked for them
+- DO NOT propose future enhancements unless explicitly asked for them
 - ONLY describe what exists, where it exists, how it works, and how components interact
 - You are creating a technical map/documentation of the existing system
 
-## Initial Setup:
-
-When this command is invoked, respond with:
-
-```
-I'm ready to research the codebase. Please provide your research question or area of interest, and I'll analyze it thoroughly by exploring relevant components and connections.
-```
-
-Then wait for the user's research query.
-
-## Steps to follow after receiving the research query:
+## Steps to follow
 
 1. **Read any directly mentioned files first:**
 
-   - If the user mentions specific files (tickets, docs, JSON), read them FULLY first
-   - **IMPORTANT**: Use the Read tool WITHOUT limit/offset parameters to read entire files
+   - If the user mentions specific files, read them FULLY first
    - **CRITICAL**: Read these files yourself in the main context before spawning any sub-tasks
    - This ensures you have full context before decomposing the research
 
-2. **Analyze and decompose the research question:**
+2. **Analyze and decompose the goal of the research:**
 
-   - Break down the user's query into composable research areas
-   - Take time to ultrathink about the underlying patterns, connections, and architectural implications the user might be seeking
+   - Think deeply about the research goal and break it down into composable research areas
+   - Take time to ultrathink about the underlying patterns, connections, and architectural implications.
    - Identify specific components, patterns, or concepts to investigate
    - Create a research plan using TodoWrite/write_todos to track all subtasks
    - Consider which directories, files, or architectural patterns are relevant
@@ -53,8 +39,6 @@ Then wait for the user's research query.
    - Start with locator agents to find what exists
    - Then use analyzer agents on the most promising findings
    - Run multiple agents in parallel when they're searching for different things
-   - Each agent knows its job - just tell it what you're looking for
-   - Don't write detailed prompts about HOW to search - the agents already know
 
 4. **Wait for all sub-agents to complete and synthesize findings:**
 
@@ -98,11 +82,11 @@ Then wait for the user's research query.
 
      ## Research Question
 
-     [Original user query]
+     [Original query or research goal]
 
      ## Summary
 
-     [High-level findings answering the user's question]
+     [High-level findings]
 
      ## Detailed Findings
 
