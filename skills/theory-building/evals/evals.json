@@ -1,0 +1,47 @@
+{
+  "skill_name": "theory-building",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Use the theory-building skill: I'm adding AI-generated code for a new billing retry flow. Review whether it fits the existing system before we merge it.",
+      "expected_output": "The assistant should evaluate correctness and conceptual fit, inspect assumptions in the generated code, check domain vocabulary and invariants, separate theory from implementation pressure points, and return sequenced next actions without writing files.",
+      "files": [],
+      "expectations": [
+        "Output includes an explicit World -> Program Mapping or equivalent mapping from real-world billing retry cases to code responsibilities.",
+        "Output separates conceptual-fit risks from ordinary implementation cleanup.",
+        "Output interrogates assumptions in the generated code instead of accepting it as authoritative.",
+        "Output provides sequenced action items that confirm unclear theory and add or identify regression tests before risky billing or lifecycle implementation.",
+        "Output does not include a dedicated Documentation Placement section unless the prompt asks for one.",
+        "Output does not create or modify files by default."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Use `theory-building`: Help me design a refactor for our user/account/customer model. The terms are getting confusing and bugs keep showing up in permissions.",
+      "expected_output": "The assistant should clarify domain terms, identify overloaded concepts, propose a coherent model, call out invariants and tradeoffs, map real-world identity and permission concepts to program concepts, and return sequenced next actions without writing files.",
+      "files": [],
+      "expectations": [
+        "Output distinguishes real-world concepts such as user, account, customer, ownership, and permission from their program representations.",
+        "Output identifies overloaded or ambiguous terms and proposes clearer boundaries.",
+        "Output calls out invariants that should guide the refactor.",
+        "Output avoids unsupported subjective claims and ties recommendations to observed or stated model facts.",
+        "Output provides sequenced action items rather than an unordered list of concerns, with tests or migration checks before risky permission changes.",
+        "Output does not include a dedicated Documentation Placement section unless the prompt asks for one."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Apply programming-as-theory-building to this implementation: implement this feature, but make sure future maintainers understand why it works this way.",
+      "expected_output": "The assistant should inspect local conventions, form a concise theory before implementation, code to fit the existing model, add targeted tests when useful, explain the important design decision in evidence-based language, and avoid writing separate documentation unless explicitly requested.",
+      "files": [],
+      "expectations": [
+        "Output or implementation notes include the theory that guided the change.",
+        "Output maps the feature's real-world behavior to the program location or abstraction that handles it.",
+        "Output uses local vocabulary and boundaries rather than inventing unrelated concepts.",
+        "Output adds or recommends targeted regression tests before high-risk changes to security, billing, routing, lifecycle, state-machine, migration, or external-system integration behavior.",
+        "Final response explains the design choice with evidence rather than subjective comparison.",
+        "Output does not write documentation, ADRs, or task files unless explicitly requested."
+      ]
+    }
+  ]
+}
