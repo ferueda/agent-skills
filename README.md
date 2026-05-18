@@ -17,6 +17,17 @@ Clarify requirements before implementing. Ensures agents ask the minimum set of 
 
 ---
 
+### interrogator
+
+Deeply interrogate a problem space, user requirements, or existing code to uncover hidden complexities and edge cases.
+
+**Use when:**
+- Need to understand the root cause of a bug
+- Exploring a new domain
+- Defining the boundaries of a feature
+
+---
+
 ### create-plan
 
 Create detailed implementation plans through interactive research and iteration. Produces thorough technical specifications with phased approaches.
@@ -77,6 +88,28 @@ Document completed implementation work with what was done, how, why, and files t
 - After completing a phase or full implementation
 - "Summarize what was done..."
 - Need implementation documentation
+
+---
+
+### theory-building
+
+Build, test, and refine a mental model or technical theory about how a system or problem works.
+
+**Use when:**
+- Developing a hypothesis about a bug
+- Designing a complex system
+- Need to verify understanding before acting
+
+---
+
+### theory-building-review
+
+Review and challenge a theory or mental model to ensure it is robust, evidence-backed, and free of cognitive biases.
+
+**Use when:**
+- Reviewing a hypothesis
+- Critiquing a proposed design
+- Need to identify potential blind spots in reasoning
 
 ## Installation
 
