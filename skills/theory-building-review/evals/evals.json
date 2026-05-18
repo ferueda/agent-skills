@@ -1,0 +1,23 @@
+{
+  "skill_name": "theory-building-review",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Run the theory-building-review skill: We merged a few checkout and invoice changes this week. Tell us where our domain model may be drifting.",
+      "expected_output": "A repository-scoped theory-building review that inspects recent diffs or commits, reconstructs checkout/invoice domain concepts, identifies conceptual drift with file references, and gives concrete refactor/test/doc action items.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Use `theory-building-review`: Before I refactor the auth module, audit whether the current code expresses the domain model clearly. I want findings, not implementation yet.",
+      "expected_output": "A conceptual-fit review of the auth domain that focuses on vocabulary, boundaries, invariants, and theory preservation, with grounded findings and no code edits.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Run the weekly theory-building-review skill on this codebase. Pick one module I touched recently, explain the system theory, and give me 3 action items to improve my craft.",
+      "expected_output": "A weekly practice report based on recent changes or high-signal modules, including a theory summary, strong signals, findings, 3 concrete action items, and open questions.",
+      "files": []
+    }
+  ]
+}
