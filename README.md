@@ -8,7 +8,7 @@ Skills follow the [Agent Skills](https://agentskills.io/) format.
 
 ### ask-questions
 
-Clarify requirements before implementing. Ensures agents ask the minimum set of must-have questions to avoid wrong work.
+Clarify requirements before implementing. Ensures agents ask the minimum set of must-have questions to avoid wrong work. Explicitly invoked only.
 
 **Use when:**
 - Request is underspecified or ambiguous
@@ -17,39 +17,26 @@ Clarify requirements before implementing. Ensures agents ask the minimum set of 
 
 ---
 
-### interrogator
-
-Deeply interrogate a problem space, user requirements, or existing code to uncover hidden complexities and edge cases.
-
-**Use when:**
-- Need to understand the root cause of a bug
-- Exploring a new domain
-- Defining the boundaries of a feature
-
----
-
-### create-plan
-
-Create detailed implementation plans through interactive research and iteration. Produces thorough technical specifications with phased approaches.
-
-**Use when:**
-- "Create a plan for..."
-- "Build a feature..."
-- "Implement..."
-- Starting any non-trivial feature work
-
-**Output:** `dev/plans/YYYYMMDD-description.md`
-
----
-
 ### implement-plan
 
-Execute a spec document phase-by-phase, writing robust idiomatic code that follows codebase patterns.
+Implement a spec document phase-by-phase, writing robust idiomatic code that follows codebase patterns.
 
 **Use when:**
 - A plan/spec document exists and is approved
 - Ready to start implementation
 - "Implement this plan..."
+
+---
+
+### interrogator
+
+Interview the user to extract knowledge from their head and synthesize it into a structured document. Asks one question at a time, depth-first, to produce specs, design docs, briefs, or decision records.
+
+**Use when:**
+- "Interview me about..."
+- "Help me think through..."
+- "I need to spec out..."
+- User has a vague concept and needs help turning it into a concrete artifact
 
 ---
 
@@ -64,6 +51,21 @@ Research codebase comprehensively using parallel sub-agents. Documents existing 
 - Need to map existing system behavior
 
 **Output:** `dev/research/YYYYMMDD-description.md`
+
+---
+
+### review-implementation
+
+Review code changes critically and adversarially. Looks for antipatterns, unnecessary complexity, bugs, policy violations, and opportunities to simplify. Default posture: assume every change adds unnecessary complexity until proven otherwise.
+
+**Use when:**
+- "Review this implementation..."
+- "Review these changes..."
+- "Review this branch..."
+- "Adversarial review..."
+- Code changes need scrutiny before merging or accepting
+
+**Evaluates:** Correctness, Complexity, Style, Architecture, Reliability, Performance, Policy
 
 ---
 
@@ -82,7 +84,7 @@ Review a spec document against codebase reality. Identifies gaps, risks, and ens
 
 ### summarize-work
 
-Document completed implementation work with what was done, how, why, and files touched.
+Summarize work done in a spec/plan document with what was done, how, why, and files touched.
 
 **Use when:**
 - After completing a phase or full implementation
@@ -93,23 +95,25 @@ Document completed implementation work with what was done, how, why, and files t
 
 ### theory-building
 
-Build, test, and refine a mental model or technical theory about how a system or problem works.
+Point-of-work workflow for applying Peter Naur's "programming as theory building" during active design, implementation, refactoring, or review. Explicitly invoked only.
 
 **Use when:**
-- Developing a hypothesis about a bug
-- Designing a complex system
-- Need to verify understanding before acting
+- "Use the theory-building skill..."
+- "Apply theory building to this design..."
+- "Check whether this belongs in the system..."
+- Need to verify a change strengthens the system's shared theory
 
 ---
 
 ### theory-building-review
 
-Review and challenge a theory or mental model to ensure it is robust, evidence-backed, and free of cognitive biases.
+Weekly or post-change repository audit through the theory-building lens. Inspects recent diffs, reconstructs the system theory, and finds places where code and domain language diverge. Explicitly invoked only.
 
 **Use when:**
-- Reviewing a hypothesis
-- Critiquing a proposed design
-- Need to identify potential blind spots in reasoning
+- "Run the theory-building review..."
+- Weekly review of recent changes
+- After a feature lands
+- Before a larger refactor
 
 ## Installation
 
@@ -127,13 +131,13 @@ Skills are automatically available once installed. The agent will use them when 
 
 **Examples:**
 ```
-Create a plan for adding user authentication
+Review this implementation adversarially
 ```
 ```
 Research how the payment system works
 ```
 ```
-Review my implementation spec
+Interview me about this new feature
 ```
 
 ## Skill Structure
