@@ -40,19 +40,6 @@ Interview the user to extract knowledge from their head and synthesize it into a
 
 ---
 
-### research-codebase
-
-Research codebase comprehensively using parallel sub-agents. Documents existing architecture without suggesting changes.
-
-**Use when:**
-- "Research the codebase..."
-- "Understand how X works..."
-- "Investigate Y..."
-- Need to map existing system behavior
-
-**Output:** `dev/research/YYYYMMDD-description.md`
-
----
 
 ### review-implementation
 
