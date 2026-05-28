@@ -57,6 +57,40 @@ Pair it with `theory-building-review` this way:
 - `theory-building` helps design and implement the specific fixes without
   introducing more drift.
 
+## When To Use Which Skill
+
+Use this skill when the user is inside one concrete change and needs judgment
+at the point of work.
+
+| Situation | Use this skill for |
+|---|---|
+| Designing a feature | Establish the domain model, invariant, and design fit before implementation. |
+| Implementing a change | Keep names, boundaries, and tests aligned with the current theory. |
+| Reviewing a PR or diff | Check whether the change belongs in the model, after concrete bugs and risks. |
+| Accepting AI-generated code | Inspect assumptions before adopting the code. |
+| Fixing a finding from `theory-building-review` | Design the specific correction without adding more drift. |
+
+Do not use this skill for broad repository audits, weekly reviews, or
+post-feature drift checks. Use `theory-building-review` for those.
+
+## Operating Modes
+
+Choose the lightest mode that can protect the work.
+
+- **5-minute check**: For ordinary changes, answer only: domain problem,
+  world-to-program mapping, invariant, and whether the change belongs.
+- **Design pass**: For features, migrations, state changes, permissions,
+  billing, routing, external integrations, or lifecycle work, include
+  alternatives, tradeoffs, tests, and open questions.
+- **Review pass**: For PRs or generated code, lead with concrete findings and
+  add theory-fit concerns only when they affect maintainability or future
+  modification.
+- **Implementation support**: If the user asks to implement, first state the
+  theory being protected, then make the change within that scope.
+
+Prefer the 5-minute check unless the change is high-risk or conceptually
+ambiguous.
+
 ## Core Principle
 
 A good programmer understands the mapping between world and program. You should
@@ -131,6 +165,14 @@ When using, reviewing, or accepting generated code, pause before adoption:
 Generated code is acceptable when it expresses the theory cleanly. It is risky
 when it smuggles in a different theory of the system.
 
+Use this fast acceptance test:
+
+- What concept did the generated code assume exists?
+- Does that concept already exist under another name?
+- Which invariant could this code bypass?
+- Where would a future maintainer expect this behavior to live?
+- What test or example would prove the code matches the intended theory?
+
 ### 3. Implement For Fit
 
 When editing code:
@@ -185,7 +227,24 @@ or task artifacts by default. Recommend capturing context only when the decision
 would otherwise be lost and future work would pay for that loss; then wait for
 the user to say exactly where and how to write it.
 
-### 6. Keep The Judgment Evidence-Based
+### 6. Improve The Skill From Use
+
+Treat this skill as a small procedural artifact that improves through real
+work. After using it, notice whether the output was useful.
+
+- If the analysis was too abstract, add a sharper example or output constraint.
+- If it slowed down a small change, prefer the 5-minute check next time.
+- If it missed a recurring failure mode, add one question to the relevant
+  checklist.
+- If it wrote or proposed durable docs too eagerly, strengthen the write policy.
+- If it produced implementation steps during a pure theory pass, tighten the
+  separation between analysis and planning.
+
+Make only small edits to the skill at a time, then validate them on the next
+similar task. Keep changes that make the work clearer, safer to modify, or
+easier to explain.
+
+### 7. Keep The Judgment Evidence-Based
 
 Avoid unsupported comparative or editorial claims such as "better than most
 legacy modules" unless the user asks for qualitative judgment. Prefer phrasing
@@ -199,7 +258,7 @@ intent, the manager owns local billing objects, tasks own external side effects,
 and sync reconciles external truth.
 ```
 
-### 7. Separate Theory Passes From Implementation Plans
+### 8. Separate Theory Passes From Implementation Plans
 
 A theory pass explains the model, mappings, invariants, pressure points, and
 next moves. It should not silently become an implementation plan or start making
@@ -241,6 +300,22 @@ confirm the intended theory, add or identify regression tests for the important
 invariants, make the implementation change, then explicitly defer unsupported
 behavior or follow-up persistence if needed. Do not write files without explicit
 user approval.
+
+For the 5-minute check, use this shorter form:
+
+```markdown
+**Theory**
+[The concept and why this change belongs or does not belong.]
+
+**Invariant**
+[The rule or behavior to protect.]
+
+**Fit**
+[Where the implementation should live and what to avoid.]
+
+**Next Step**
+[One concrete action: clarify, test, implement, or reject.]
+```
 
 ### For Implementation Work
 
