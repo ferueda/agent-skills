@@ -30,7 +30,7 @@ Work style: telegraph; noun-phrases ok; drop grammar; min tokens.
 
 ## Repository Overview
 
-A personal collection of skills and workflows for AI coding agents, maintained for use across my projects. Skills are packaged instructions, scripts, and resources that extend agent capabilities for specialized tasks. Workflows define step-by-step procedures for common operations.
+A personal collection of skills for AI coding agents, maintained for use across my projects. Skills are packaged instructions, scripts, and resources that extend agent capabilities for specialized tasks.
 
 ## Directory Structure
 
@@ -41,9 +41,6 @@ skills/
     scripts/              # Optional: helper scripts and utilities
     examples/             # Optional: reference implementations
     resources/            # Optional: templates, assets, or data files
-
-workflows/
-  {workflow-name}.md      # Step-by-step procedure files
 ```
 
 ## Creating a New Skill
@@ -86,30 +83,7 @@ description: {One sentence describing when to use this skill. Include trigger ph
 {Describe what the skill produces or what the agent should do after}
 ```
 
-## Creating a New Workflow
 
-### Workflow File Format
-
-```markdown
----
-description: {Short title describing the workflow, e.g., "how to deploy the application"}
----
-
-# {Workflow Title}
-
-{Step-by-step instructions on how to run this workflow}
-
-## Steps
-
-1. {First step}
-2. {Second step}
-...
-```
-
-### Workflow Annotations
-
-- `// turbo` - Placed above a step to indicate the agent can auto-run that specific step
-- `// turbo-all` - Placed anywhere in the workflow to indicate all steps can be auto-run
 
 ## Best Practices for Context Efficiency
 
@@ -126,14 +100,13 @@ Skills are loaded on-demand—only the skill name and description are loaded at 
 
 | Item | Convention | Example |
 |------|------------|---------|
-| Skill directory | `kebab-case` | `agent-browser` |
-| Workflow file | `kebab-case.md` | `deploy-app.md` |
+| Skill directory | `kebab-case` | `review-implementation` |
 | Script files | `kebab-case.{ext}` | `validate.sh` |
 | SKILL.md | Exact name, uppercase | `SKILL.md` |
 
 ## Contributing
 
-When adding new skills or workflows:
+When adding new skills:
 
 1. Follow the naming conventions above
 2. Include clear trigger phrases in descriptions
