@@ -32,6 +32,22 @@ Pair it with `theory-building` this way:
 - Use `theory-building-review` to find theory gaps across recent work.
 - Use `theory-building` to design or implement a specific fix from the review.
 
+## When To Use Which Skill
+
+Use this skill when the user wants to step back from one or more changes and
+audit whether the repository still expresses the domain theory clearly.
+
+| Situation | Use this skill for |
+|---|---|
+| Weekly review | Inspect recent diffs and produce one or two theory-preserving improvements. |
+| After a feature lands | Check whether new concepts, names, tests, and docs fit the model. |
+| Before a refactor | Find the real theory gaps before moving code. |
+| After several AI-assisted changes | Detect copied abstractions, hidden assumptions, and vocabulary drift. |
+| Personal craft practice | Turn one recent module or feature into a theory-building exercise. |
+
+Do not use this skill for active design, implementation, PR review, debugging,
+or accepting one specific generated change. Use `theory-building` for those.
+
 ## Core Principle
 
 Treat source code as an artifact of a human theory. Your review should recover that theory, compare it to the code, and identify where the theory is missing, distorted, duplicated, or hard to transfer.
@@ -47,6 +63,19 @@ Use this framing throughout:
 Prefer concrete repository evidence over broad speculation.
 
 If the user points to files, features, commits, or a branch, use that scope.
+
+Use these scope presets when the user does not specify one:
+
+- **Recent diff**: Current `git diff` and changed tests/docs. Best for
+  uncommitted work.
+- **Last 10 commits**: Recent merged or committed work. Best for weekly review.
+- **One feature/module**: A named workflow, bounded context, or directory. Best
+  before refactoring.
+- **Fallback scan**: High-signal files and decay markers when Git history is
+  unavailable or empty.
+
+Keep the review narrow enough that the action items are doable this week. If
+the scope is too broad, state the chosen slice before reviewing.
 
 If the user says "weekly review", "after recent changes", or gives no explicit scope, inspect the repository for recent change context:
 
@@ -65,6 +94,22 @@ rg -n "TODO|FIXME|HACK|domain|model|policy|rule|invariant|workflow|event|command
 ```
 
 Then read only the files needed to understand the domain surface. Prefer tests, domain modules, service/application layers, API handlers, schema/migration files, docs, and recent diffs.
+
+## Review Depth
+
+Choose the smallest depth that fits the request.
+
+- **Light weekly pass**: 30-60 minutes of evidence, at most three findings, and
+  one practice item.
+- **Post-feature pass**: Focus on the feature's concepts, boundaries, tests,
+  and any docs or ADRs needed to preserve decisions.
+- **Pre-refactor pass**: Identify the domain split and invariants before
+  recommending code movement.
+- **Personal craft pass**: No repo-wide audit; use one feature or module as a
+  practice case.
+
+Avoid turning the review into a broad architecture wishlist. The output should
+help the next week of work.
 
 ## Build A Theory Sketch
 
@@ -135,6 +180,20 @@ Watch for these signs that the theory is weakening:
 - Code comments explain what the code does but not why the domain requires it.
 - AI-generated or boilerplate-looking code introduces abstractions not used elsewhere.
 
+## Finding Severity
+
+Use severity to communicate practical risk, not taste.
+
+- **P1**: A hidden or duplicated rule can cause incorrect behavior, security,
+  billing, permission, data-loss, or state-transition mistakes.
+- **P2**: A naming, boundary, or model mismatch is likely to make future changes
+  unsafe or confusing.
+- **P3**: A local theory-preservation improvement would help maintainability,
+  onboarding, or review quality but is not urgent.
+
+Skip findings that are only style preferences. Every finding should connect
+repository evidence to a modification risk.
+
 ## Output Format
 
 Use this structure for repository reviews:
@@ -169,6 +228,9 @@ Keep findings grounded. Each finding should connect code evidence to one of thes
 - mismatch between domain language and code language
 - missing test or documentation that would preserve the theory
 
+For a light weekly pass, cap the output at three findings and three action
+items. Prefer one high-leverage improvement over a long list.
+
 ## Action Item Guidance
 
 Make action items small enough to do. Prefer:
@@ -183,6 +245,22 @@ Make action items small enough to do. Prefer:
 - Add an anti-corruption mapping when an external API term leaks into the core model.
 
 Avoid vague recommendations like "improve architecture", "add documentation", or "clean this up" unless they are followed by an exact target and reason.
+
+## Improve The Skill From Use
+
+Treat this skill as a review artifact that should evolve from actual reviews.
+
+- If findings are too broad, narrow the scope presets or cap output harder.
+- If reviews miss recurring drift, add that drift pattern to Decay Signals.
+- If action items are not getting done, make them smaller and tie each one to a
+  file, test, doc, or named investigation.
+- If the review overlaps with active implementation work, strengthen the
+  handoff rule to `theory-building`.
+- If personal craft mode is more useful than repo audit, add examples from the
+  user's real workflow.
+
+Make one or two edits after a real review, then validate them on the next
+weekly or post-feature review.
 
 ## If The User Asks You To Implement Improvements
 
