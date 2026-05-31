@@ -40,6 +40,16 @@ Interview the user to extract knowledge from their head and synthesize it into a
 
 ---
 
+### react-to-review
+
+Evaluate, analyze, and systematically react to an adversarial code review report (e.g., from `/review-implementation`). Decide on the action for each finding, justify the decision, and plan implementation.
+
+**Use when:**
+- An adversarial review report has been provided
+- "React to this review..."
+- Evaluating review findings (Address, Do Something Different, Skip) and planning fixes
+
+---
 
 ### review-implementation
 
