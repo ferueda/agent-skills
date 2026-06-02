@@ -27,6 +27,12 @@ Avoid:
 - You must be able to describe a concrete scenario that the test is covering.
 - If you cannot construct a plausible coverage scenario, do not test.
 
+## Safety rules
+
+- Do not open a PR if the missing coverage does not represent a meaningful business risk.
+- If the required tests would be excessively brittle, mock-heavy, or hard to maintain, do not add them.
+- If coverage is already sufficient for the recently merged code, post a short "coverage sufficient" summary. This is an expected and acceptable outcome.
+
 ## Validation
 
 - Run the relevant test targets for touched areas.
