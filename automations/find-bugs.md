@@ -37,3 +37,4 @@ If fixed, include:
 - Bug and impact
 - Root cause
 - Fix and validation performed
+- Open a PR from the main branch using the gh CLI, with relevant description of what was fixed, how, and why it's relevant and needed.
