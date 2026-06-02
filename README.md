@@ -112,6 +112,28 @@ Weekly or post-change repository audit through the theory-building lens. Inspect
 - After a feature lands
 - Before a larger refactor
 
+## Automations
+
+In addition to skills, this repository includes automations designed for continuous background execution to ensure codebase quality and reliability:
+
+### find-bugs
+
+A deep bug-finding automation focused on high-severity issues. It inspects recent commits to identify critical correctness bugs (data loss, crashes, security holes) that escaped review.
+
+**Use when:**
+- Running continuous background checks on newly merged code
+- Looking for high-impact issues rather than stylistic nits
+
+---
+
+### test-coverage
+
+A test coverage automation focused on preventing regressions. It inspects recently merged code and adds missing tests where coverage is weak and business risk is meaningful.
+
+**Use when:**
+- Automatically patching coverage gaps on new code paths
+- Enforcing test requirements on critical core flows
+
 ## Installation
 
 Install using the [skills CLI](https://skills.sh):
