@@ -41,7 +41,19 @@ skills/
     scripts/              # Optional: helper scripts and utilities
     examples/             # Optional: reference implementations
     resources/            # Optional: templates, assets, or data files
+automations/              # Continuous background execution automations
+  {automation-name}.md    # Markdown file describing the automation
 ```
+
+## Automations
+
+Automations are independent, background tasks designed to enforce project standards and prevent regressions.
+
+### Creating a New Automation
+
+- **Location**: Place in the `automations/` folder.
+- **Naming**: Use `kebab-case.md` (e.g., `find-bugs.md`).
+- **Format**: Include the goal, strategy, rules, and output expectations.
 
 ## Creating a New Skill
 
