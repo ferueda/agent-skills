@@ -21,7 +21,8 @@ Inspect recent commits and identify critical correctness bugs that escaped revie
 
 ## Fix strategy
 
-- If you find a critical bug, implement a minimal, high-confidence fix.
+- If you find a critical bug, checkout a new feature branch (never work or commit directly on `main`).
+- Implement a minimal, high-confidence fix.
 - Add or update tests when possible to lock in the behavior.
 - Make sure tests fail before they pass with the intended behavior.
 - Avoid broad refactors in the same PR.
@@ -37,4 +38,4 @@ If fixed, include:
 - Bug and impact
 - Root cause
 - Fix and validation performed
-- Open a PR from the main branch using the gh CLI, with relevant description of what was fixed, how, and why it's relevant and needed.
+- Push the feature branch and open a Pull Request targeting `main` using the `gh` CLI. Do NOT push or merge changes directly to `main`. Include a relevant description of what was fixed, how, and why it's relevant and needed.
