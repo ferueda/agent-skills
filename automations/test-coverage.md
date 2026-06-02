@@ -16,6 +16,7 @@ Avoid:
 - Trivial snapshots with little signal.
 - Tests for cosmetic-only changes.
 - Refactors that do not change behavior unless critical behavior is now untested.
+- Redundant tests for code paths that are already sufficiently covered.
 
 ## Implementation rules
 
