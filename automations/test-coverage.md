@@ -20,6 +20,7 @@ Avoid:
 
 ## Implementation rules
 
+- Always checkout a new feature branch (never work or commit directly on `main`).
 - Follow existing test conventions and fixture patterns.
 - Keep tests deterministic and independent.
 - Add the minimum set of tests that clearly prove correctness.
@@ -41,10 +42,9 @@ Avoid:
 
 ## Output
 
-Create a PR, include:
+Push the feature branch and open a Pull Request targeting `main` using the `gh` CLI. Do NOT push or merge changes directly to `main`. Include:
 - Only your changes
 - Relevant description, and explanation of what was done and why
 - Risky behavior now covered
 - Test files added/updated
 - Why these tests materially reduce regression risk
-- Always from the main branch, making sure it's up to date.
