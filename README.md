@@ -134,6 +134,16 @@ A test coverage automation focused on preventing regressions. It inspects recent
 - Automatically patching coverage gaps on new code paths
 - Enforcing test requirements on critical core flows
 
+---
+
+### theory-building-review
+
+A weekly repository audit automation based on Peter Naur's "Programming as Theory Building". It inspects recent changes to reconstruct the system theory and identify conceptual drift, duplicated concepts, or misplaced business rules.
+
+**Use when:**
+- Running weekly background checks to ensure codebase alignment with the domain theory
+- Catching architectural decay or vocabulary drift before it accumulates
+
 ## Installation
 
 Install using the [skills CLI](https://skills.sh):
