@@ -38,6 +38,7 @@ A personal collection of skills for AI coding agents, maintained for use across 
 skills/
   {skill-name}/           # kebab-case directory name
     SKILL.md              # Required: skill instructions and usage
+    agents/openai.yaml    # Recommended: UI metadata and default prompt
     scripts/              # Optional: helper scripts and utilities
     examples/             # Optional: reference implementations
     resources/            # Optional: templates, assets, or data files
@@ -95,7 +96,16 @@ description: {One sentence describing when to use this skill. Include trigger ph
 {Describe what the skill produces or what the agent should do after}
 ```
 
+### agents/openai.yaml Format
 
+Recommended for new skills. Keep this metadata aligned with `SKILL.md`.
+
+```yaml
+interface:
+  display_name: "Create Plan"
+  short_description: "Turn instructions into implementation plans"
+  default_prompt: "Use $create-plan to turn these requirements into a scoped, code-backed implementation plan."
+```
 
 ## Best Practices for Context Efficiency
 
@@ -115,6 +125,7 @@ Skills are loaded on-demand—only the skill name and description are loaded at 
 | Skill directory | `kebab-case` | `review-implementation` |
 | Script files | `kebab-case.{ext}` | `validate.sh` |
 | SKILL.md | Exact name, uppercase | `SKILL.md` |
+| UI metadata | `agents/openai.yaml` | `agents/openai.yaml` |
 
 ## Contributing
 
@@ -122,5 +133,6 @@ When adding new skills:
 
 1. Follow the naming conventions above
 2. Include clear trigger phrases in descriptions
-3. Test with at least one AI agent before committing
-4. Update this file if introducing new patterns or conventions
+3. Add `agents/openai.yaml` unless there is a specific reason to omit UI metadata
+4. Test with at least one AI agent before committing
+5. Update this file if introducing new patterns or conventions
