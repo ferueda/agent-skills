@@ -17,6 +17,17 @@ Clarify requirements before implementing. Ensures agents ask the minimum set of 
 
 ---
 
+### create-plan
+
+Create a scoped, code-backed implementation plan from a todo, spec, issue, review notes, or raw user instructions.
+
+**Use when:**
+- "Create a plan..."
+- "Turn this todo/spec into a plan..."
+- Requirements need research, phases, tests, risks, and acceptance criteria before implementation
+
+---
+
 ### implement-plan
 
 Implement a spec document phase-by-phase, writing robust idiomatic code that follows codebase patterns.
@@ -166,6 +177,9 @@ Review this implementation adversarially
 Research how the payment system works
 ```
 ```
+Create a plan for this feature request
+```
+```
 Interview me about this new feature
 ```
 
@@ -174,6 +188,7 @@ Interview me about this new feature
 Each skill contains:
 
 - `SKILL.md` - Instructions for the agent (required)
+- `agents/openai.yaml` - UI metadata such as display name, short description, and default prompt (recommended)
 - `scripts/` - Helper scripts (optional)
 - `examples/` - Reference implementations (optional)
 - `resources/` - Templates and assets (optional)

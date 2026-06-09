@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Plan"
+  short_description: "Turn instructions into implementation plans"
+  default_prompt: "Use $create-plan to turn these requirements into a scoped, code-backed implementation plan."
