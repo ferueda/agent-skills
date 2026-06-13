@@ -65,11 +65,15 @@ The facts the executor needs, inlined — never "as discussed" or "see audit":
 
 ## Suggested executor toolkit
 
-(Optional — include only when relevant skills/tools plausibly exist in the
-executor's environment. Skip the section otherwise.)
+(Optional — include only after investigating the executor environment for useful
+repo-local skills, `.agents/skills`, `.cursor/skills`, scripts, MCP/tooling docs,
+and reference docs. Skip this section when nothing relevant is found. Do not
+invent tools or skills.)
 
 - Skills the executor should invoke if available, and for what:
   "use `skill-xyz` when writing the memoization in step 3".
+- Tools or scripts the executor should prefer, with exact command/path and when
+  to use them.
 - Reference docs worth reading before starting, by path or URL.
 
 ## Scope
