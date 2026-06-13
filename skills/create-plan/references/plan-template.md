@@ -147,5 +147,5 @@ For the human/agent who owns this code after the change lands:
 - Are the STOP conditions specific to this plan's actual risks, not boilerplate?
 - Would a reviewer reading only "Why this matters" + "Done criteria" understand what they're approving?
 - No secret values anywhere in the file — locations and credential types only.
-- "Planned at" SHA is filled in and the in-scope paths in the drift check match the Scope section.
+
 
