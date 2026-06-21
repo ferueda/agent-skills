@@ -25,7 +25,7 @@ The economics of this skill: an expensive, high-ceiling model does the part wher
 - Read repository guidance files such as `README,md`, `AGENTS.md`, `VISION`, `LEARNINGS`, root config files (`package.json`, `pyproject.toml`, `go.mod`, etc.), CI config, and the directory structure.
 - Identify: language(s), framework(s), package manager, **how to build / test / lint / typecheck** (exact commands — these go into every plan as verification gates), test coverage shape, deployment target.
 - Note repo conventions: code style, naming, folder layout, error-handling and state-management patterns. Plans must tell the executor to *match* these, with examples.
-- Investigate executor aids available in the environment: repo-local skills, `.agents/skills`, `.cursor/skills`, `AGENTS.md` guidance, scripts, MCP/tooling docs, and reference docs. If a skill or tool would make execution safer or faster, include it in the plan's "Suggested executor toolkit" section with when to use it. Do not invent unavailable tools.
+- Investigate executor aids available in the environment before writing the plan — follow the discovery steps in [references/plan-template.md](references/plan-template.md) ("Skills for the executor"). Check: host available-skills list (if injected), repo `skills/`, `.agents/skills/`, `.cursor/skills/`, `.claude/skills/`, `AGENTS.md`, scripts, MCP/tooling docs, and reference docs. Read each candidate's `SKILL.md`; recommend only skills that match a concrete plan step. Do not invent unavailable tools.
 - Read the source artifact fully.
 - Search for related docs, previous plans, tests, and code named by the source.
 - Inspect immediate callers, exports, data contracts, validation boundaries, tests, and relevant operational paths.
@@ -55,6 +55,7 @@ The economics of this skill: an expensive, high-ceiling model does the part wher
 - Machine-checkable done criteria — commands and expected results, not prose like "works correctly."
 - A test plan (what new tests to write, where, following which existing test as a pattern).
 - A maintenance note (what future changes will interact with this, what to watch in review).
+- **Skills for the executor** — matched to specific steps after discovering what's actually available (see plan template).
 - Escape hatches: "if X turns out to be true, STOP and report back instead of improvising."
 
 ## Tone of the output
