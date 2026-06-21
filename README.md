@@ -142,14 +142,17 @@ Review a spec document against codebase reality. Identifies gaps, risks, and ens
 
 ---
 
-### summarize-work
+### handoff-work
 
-Summarize work done in a spec/plan document with what was done, how, why, and files touched.
+Hand off work in progress or finished to another agent for continuation or review. Self-contained summary with background context, what was worked on, how, why, files referenced, and what remains.
 
 **Use when:**
-- After completing a phase or full implementation
-- "Summarize what was done..."
-- Need implementation documentation
+- Ending a session (done or not) another agent will continue or review
+- "Hand off this work..."
+- "Prepare a handoff..."
+- Before review on recent changes
+
+**Output:** Handoff block with status, context, what/how/why, file references, next steps, verification, and open items
 
 ---
 
