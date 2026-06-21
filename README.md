@@ -28,6 +28,18 @@ Create a scoped, code-backed implementation plan from a todo, spec, issue, revie
 
 ---
 
+### cursor-cli
+
+Run Cursor Agent headlessly and delegate work to another Cursor agent over the CLI.
+
+**Use when:**
+- "Call Cursor..."
+- "Ask Cursor..."
+- "Invoke Cursor Agent..."
+- Automating `agent -p` from scripts or agent-to-agent flows
+
+---
+
 ### implement-plan
 
 Implement a spec document phase-by-phase, writing robust idiomatic code that follows codebase patterns.
