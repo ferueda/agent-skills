@@ -17,9 +17,26 @@ Clarify requirements before implementing. Ensures agents ask the minimum set of 
 
 ---
 
+### audit
+
+Survey a codebase as a senior advisor and produce prioritized, self-contained implementation plans for other agents to execute. Strictly read-only on source code — never implements or refactors itself.
+
+**Use when:**
+- "Audit this codebase..."
+- Finding improvement opportunities (bugs, security, performance, tests, tech debt, migrations, DX)
+- Suggesting features, roadmap direction, or handoff plans for another agent
+
+**Output:** Plans in `dev/plans/` (`YYMMDD-short-slug.md`) plus `dev/plans/README.md` (execution order, dependencies, status). Each plan includes a **Skills for the executor** section — verified skills from the host and repo, mapped to specific steps. Composes with `create-plan` and `implement-plan` in the same folder.
+
+**Variants:** `quick` / `deep`, focused audits (`security`, `perf`, `tests`), `branch`, `next`, `plan <description>`, `execute <plan>`, `reconcile`, `--issues`
+
+---
+
 ### create-plan
 
 Create a scoped, code-backed implementation plan from a todo, spec, issue, review notes, or raw user instructions.
+
+**Output:** `dev/plans/YYMMDD-short-slug.md` with a **Skills for the executor** section (host + repo skills discovered and tied to plan steps)
 
 **Use when:**
 - "Create a plan..."
@@ -189,6 +206,9 @@ Review this implementation adversarially
 Research how the payment system works
 ```
 ```
+Audit this codebase for security issues
+```
+```
 Create a plan for this feature request
 ```
 ```
@@ -201,6 +221,7 @@ Each skill contains:
 
 - `SKILL.md` - Instructions for the agent (required)
 - `agents/openai.yaml` - UI metadata such as display name, short description, and default prompt (recommended)
+- `references/` - Templates, playbooks, and progressive-disclosure docs (optional)
 - `scripts/` - Helper scripts (optional)
 - `examples/` - Reference implementations (optional)
 - `resources/` - Templates and assets (optional)
