@@ -57,14 +57,34 @@ Run Cursor Agent headlessly and delegate work to another Cursor agent over the C
 
 ---
 
+### code-quality-review
+
+Review recently modified code for clarity, consistency, and maintainability while preserving exact functionality. Audits adherence to project conventions and industry best practices. Read-only — never edits files.
+
+**Use when:**
+- "Code quality review..."
+- "Readability audit..."
+- "Maintainability review..."
+- Behavior-preserving refinement suggestions on a diff or implementation
+
+**Evaluates:** Conventions, clarity, complexity, policy compliance, architecture — without changing what the code does
+
+**Output:** Findings with severity, location, recommendation, and rationale; verdict `pass` | `needs_changes` | `blocked`
+
+---
+
 ### implement-plan
 
-Implement a spec document phase-by-phase, writing robust idiomatic code that follows codebase patterns.
+Execute an approved plan or spec document phase-by-phase, writing robust idiomatic code that follows codebase patterns. Discovers relevant agent skills for implementation guidelines.
 
 **Use when:**
 - A plan/spec document exists and is approved
 - Ready to start implementation
 - "Implement this plan..."
+- "Execute the spec..."
+- Working through phases from `dev/plans/`
+
+**Output:** Phase summaries, files touched, verification results, and updated plan checkboxes
 
 ---
 
@@ -93,16 +113,19 @@ Evaluate, analyze, and systematically react to an adversarial code review report
 
 ### review-implementation
 
-Review code changes critically and adversarially. Looks for antipatterns, unnecessary complexity, bugs, policy violations, and opportunities to simplify. Default posture: assume every change adds unnecessary complexity until proven otherwise.
+Review a given implementation critically and adversarially against its plan or spec. Looks for antipatterns, bugs, plan drift, unnecessary complexity, and missing tests. Default posture: assume every change adds unnecessary complexity until proven otherwise. Read-only — never edits files.
 
 **Use when:**
 - "Review this implementation..."
 - "Review these changes..."
 - "Review this branch..."
 - "Adversarial review..."
-- Code changes need scrutiny before merging or accepting
+- "Challenge these changes..."
+- Validating an executor's diff against a plan before merge
 
-**Evaluates:** Correctness, Complexity, Style, Architecture, Reliability, Performance, Policy
+**Evaluates:** Correctness, plan adherence, complexity, architecture, reliability, policy, missing tests
+
+**Output:** Findings with severity, location, recommendation, and rationale; verdict `pass` | `needs_changes` | `blocked`
 
 ---
 
@@ -119,38 +142,19 @@ Review a spec document against codebase reality. Identifies gaps, risks, and ens
 
 ---
 
-### summarize-work
+### handoff-work
 
-Summarize work done in a spec/plan document with what was done, how, why, and files touched.
+Hand off work in progress or finished to another agent for continuation or review. Self-contained summary with background context, what was worked on, how, why, files referenced, and what remains.
 
 **Use when:**
-- After completing a phase or full implementation
-- "Summarize what was done..."
-- Need implementation documentation
+- Ending a session (done or not) another agent will continue or review
+- "Hand off this work..."
+- "Prepare a handoff..."
+- Before review on recent changes
+
+**Output:** Handoff block with status, context, what/how/why, file references, next steps, verification, and open items
 
 ---
-
-### theory-building
-
-Point-of-work workflow for applying Peter Naur's "programming as theory building" during active design, implementation, refactoring, or review. Explicitly invoked only.
-
-**Use when:**
-- "Use the theory-building skill..."
-- "Apply theory building to this design..."
-- "Check whether this belongs in the system..."
-- Need to verify a change strengthens the system's shared theory
-
----
-
-### theory-building-review
-
-Weekly or post-change repository audit through the theory-building lens. Inspects recent diffs, reconstructs the system theory, and finds places where code and domain language diverge. Explicitly invoked only.
-
-**Use when:**
-- "Run the theory-building review..."
-- Weekly review of recent changes
-- After a feature lands
-- Before a larger refactor
 
 ## Automations
 
@@ -173,16 +177,6 @@ A test coverage automation focused on preventing regressions. It inspects recent
 **Use when:**
 - Automatically patching coverage gaps on new code paths
 - Enforcing test requirements on critical core flows
-
----
-
-### theory-building-review
-
-A weekly repository audit automation based on Peter Naur's "Programming as Theory Building". It inspects recent changes to reconstruct the system theory and identify conceptual drift, duplicated concepts, or misplaced business rules.
-
-**Use when:**
-- Running weekly background checks to ensure codebase alignment with the domain theory
-- Catching architectural decay or vocabulary drift before it accumulates
 
 ## Installation
 
