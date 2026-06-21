@@ -32,6 +32,20 @@ Work style: telegraph; noun-phrases ok; drop grammar; min tokens.
 
 A personal collection of skills for AI coding agents, maintained for use across my projects. Skills are packaged instructions, scripts, and resources that extend agent capabilities for specialized tasks.
 
+## Planning workflow
+
+Implementation plans live in **`dev/plans/`** with a shared **`dev/plans/README.md`** index (execution order, dependencies, status).
+
+| Skill | Role | Plan naming |
+|-------|------|-------------|
+| `audit` | Codebase survey → prioritized handoff plans | `YYMMDD-short-slug.md` |
+| `create-plan` | Single scoped plan from a todo/spec/issue | `YYMMDD-short-slug.md` |
+| `implement-plan` | Execute an approved plan phase-by-phase | reads from `dev/plans/` |
+
+`audit` is read-only on source; only `dev/plans/` files may be created or updated. Reconcile with existing `dev/plans/README.md` before adding plans.
+
+**Plan skill discovery (required for `audit` and `create-plan`):** Before writing a plan, check the host available-skills list (if injected), repo skill dirs (`skills/`, `.agents/skills/`, `.cursor/skills/`, `.claude/skills/`), and `AGENTS.md` / `README` for named tools. Read each candidate `SKILL.md`; embed only verified skills in the plan's **Skills for the executor** table, each tied to a specific step. Never invent skill names.
+
 ## Directory Structure
 
 ```
@@ -39,9 +53,11 @@ skills/
   {skill-name}/           # kebab-case directory name
     SKILL.md              # Required: skill instructions and usage
     agents/openai.yaml    # Recommended: UI metadata and default prompt
+    references/           # Optional: templates, playbooks (progressive disclosure)
     scripts/              # Optional: helper scripts and utilities
     examples/             # Optional: reference implementations
     resources/            # Optional: templates, assets, or data files
+dev/plans/                # In target repos: implementation plans + README index
 automations/              # Continuous background execution automations
   {automation-name}.md    # Markdown file describing the automation
 ```
@@ -60,7 +76,7 @@ Automations are independent, background tasks designed to enforce project standa
 
 ### Skill Directory Naming
 
-- **Skill directory**: `kebab-case` (e.g., `agent-browser`, `create-plan`)
+- **Skill directory**: `kebab-case` (e.g., `audit`, `create-plan`, `review-implementation`)
 - **SKILL.md**: Always uppercase, always this exact filename
 - **Scripts**: `kebab-case.sh` or `kebab-case.py` (e.g., `deploy.sh`, `validate.py`)
 
