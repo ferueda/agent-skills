@@ -37,7 +37,7 @@ Options:
   --verbose                  Include usage object and workspace
   --quiet                    Suppress stdout
   --max-runtime-ms <n>       Default: 1800000
-  --idle-timeout-ms <n>      Default: 300000
+  --idle-timeout-ms <n>      Kill after n ms without output. Default: 0 (disabled)
   --dry-run
   -h, --help
 
@@ -70,7 +70,7 @@ function baseOptions() {
     verbose: false,
     quiet: false,
     maxRuntimeMs: 30 * 60 * 1000,
-    idleTimeoutMs: 5 * 60 * 1000,
+    idleTimeoutMs: 0,
     dryRun: false,
     help: false,
   };
@@ -184,8 +184,8 @@ function parseFlags(argv) {
     throw new Error("Invalid --max-runtime-ms. Use a positive number.");
   }
 
-  if (!Number.isFinite(options.idleTimeoutMs) || options.idleTimeoutMs <= 0) {
-    throw new Error("Invalid --idle-timeout-ms. Use a positive number.");
+  if (!Number.isFinite(options.idleTimeoutMs) || options.idleTimeoutMs < 0) {
+    throw new Error("Invalid --idle-timeout-ms. Use a non-negative number; 0 disables it.");
   }
 
   if (!existsSync(options.workspace)) {
