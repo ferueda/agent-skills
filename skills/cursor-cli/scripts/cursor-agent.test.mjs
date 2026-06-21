@@ -5,7 +5,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import assert from "node:assert/strict";
 import test from "node:test";
-import { resolveExecutable } from "./lib/runner.mjs";
+import { resolveExecutable, runAgent } from "./lib/runner.mjs";
 import { parseStructuredOutput } from "./lib/schema.mjs";
 
 const SCRIPT_PATH = join(dirname(fileURLToPath(import.meta.url)), "cursor-agent.mjs");
@@ -145,6 +145,53 @@ test("fake Cursor stream output becomes a successful envelope", () => {
   assert.equal(envelope.sessionId, "abc");
   assert.equal(envelope.result, "done");
   assert.equal(envelope.usageSummary, "1k in, 5 out");
+});
+
+test("disabled idle timeout allows silent Cursor work until max runtime", async () => {
+  const workspace = mkdtempSync(join(tmpdir(), "cursor-agent-workspace-"));
+  const fakeAgent = join(workspace, "agent");
+  writeFileSync(
+    fakeAgent,
+    [
+      "#!/bin/sh",
+      "sleep 0.1",
+      "printf '%s\\n' '{\"type\":\"result\",\"result\":\"done\",\"is_error\":false}'",
+      "",
+    ].join("\n"),
+  );
+  chmodSync(fakeAgent, 0o755);
+
+  const result = await runAgent(
+    { executable: fakeAgent, args: [] },
+    { workspace, outputFormat: "stream-json", maxRuntimeMs: 1_000, idleTimeoutMs: 0 },
+  );
+
+  assert.equal(result.timedOut, false);
+  assert.equal(result.timeoutKind, undefined);
+  assert.equal(result.resultText, "done");
+});
+
+test("explicit idle timeout still kills silent Cursor work", async () => {
+  const workspace = mkdtempSync(join(tmpdir(), "cursor-agent-workspace-"));
+  const fakeAgent = join(workspace, "agent");
+  writeFileSync(
+    fakeAgent,
+    [
+      "#!/bin/sh",
+      "sleep 1",
+      "printf '%s\\n' '{\"type\":\"result\",\"result\":\"done\",\"is_error\":false}'",
+      "",
+    ].join("\n"),
+  );
+  chmodSync(fakeAgent, 0o755);
+
+  const result = await runAgent(
+    { executable: fakeAgent, args: [] },
+    { workspace, outputFormat: "stream-json", maxRuntimeMs: 1_000, idleTimeoutMs: 20 },
+  );
+
+  assert.equal(result.timedOut, true);
+  assert.equal(result.timeoutKind, "idle");
 });
 
 test("structured output parser extracts and validates JSON", () => {

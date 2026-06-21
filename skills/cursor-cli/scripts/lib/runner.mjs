@@ -161,16 +161,21 @@ export async function runAgent(command, options) {
     recordActivity();
   });
 
+  const hasIdleTimeout = options.idleTimeoutMs > 0;
   const checkIntervalMs = Math.max(
     1,
-    Math.min(1_000, options.idleTimeoutMs, options.maxRuntimeMs),
+    Math.min(
+      1_000,
+      hasIdleTimeout ? options.idleTimeoutMs : options.maxRuntimeMs,
+      options.maxRuntimeMs,
+    ),
   );
 
   const timer = setInterval(() => {
     if (timedOut) return;
     const now = Date.now();
     const exceededMaxRuntime = now - startedAt >= options.maxRuntimeMs;
-    const exceededIdleTimeout = now - lastActivityAt >= options.idleTimeoutMs;
+    const exceededIdleTimeout = hasIdleTimeout && now - lastActivityAt >= options.idleTimeoutMs;
     if (!exceededMaxRuntime && !exceededIdleTimeout) return;
     timedOut = true;
     timeoutKind = exceededMaxRuntime ? "max_runtime" : "idle";
