@@ -59,6 +59,16 @@ Implementation plans live in **`dev/plans/`** with a shared **`dev/plans/README.
 
 **Skill discovery (for `implement-plan`, `review-implementation`, `code-quality-review`):** Discover available skills in the host and target repo. Read relevant `SKILL.md` files for languages, frameworks, or patterns touched by the work. Use them as guidelines — no fixed checklist. For `implement-plan`, start with the plan's **Skills for the executor** section when present.
 
+## Handoff workflow
+
+| Skill | Role |
+|-------|------|
+| `handoff-work` | Transfer context to another agent for continuation or review |
+
+Use `handoff-work` when ending a session (done or not) so the next agent can continue or review without replaying prior context. The handoff must be self-contained: goal, source artifacts, constraints, what was worked on, how, why, files referenced, status, next steps, and open items.
+
+Typical flow: `implement-plan` → `handoff-work` → `review-implementation` or `code-quality-review` → `react-to-review`.
+
 ## Directory Structure
 
 ```
