@@ -46,6 +46,19 @@ Implementation plans live in **`dev/plans/`** with a shared **`dev/plans/README.
 
 **Plan skill discovery (required for `audit` and `create-plan`):** Before writing a plan, check the host available-skills list (if injected), repo skill dirs (`skills/`, `.agents/skills/`, `.cursor/skills/`, `.claude/skills/`), and `AGENTS.md` / `README` for named tools. Read each candidate `SKILL.md`; embed only verified skills in the plan's **Skills for the executor** table, each tied to a specific step. Never invent skill names.
 
+## Review workflow
+
+| Skill | Role | Posture |
+|-------|------|---------|
+| `review-spec` | Validate a plan/spec against codebase reality before implementation | Advisory |
+| `review-implementation` | Adversarial review of an implementation against its plan or spec | Skeptical; read-only |
+| `code-quality-review` | Behavior-preserving quality audit (clarity, conventions, maintainability) | Read-only |
+| `react-to-review` | Triage review findings (Implement, Adapt, Decline) and plan fixes | Decision + handoff |
+
+`review-implementation` and `code-quality-review` are both read-only. Use `review-implementation` when validating correctness and plan adherence; use `code-quality-review` when the goal is refinements that preserve exact behavior.
+
+**Skill discovery (for `implement-plan`, `review-implementation`, `code-quality-review`):** Discover available skills in the host and target repo. Read relevant `SKILL.md` files for languages, frameworks, or patterns touched by the work. Use them as guidelines — no fixed checklist. For `implement-plan`, start with the plan's **Skills for the executor** section when present.
+
 ## Directory Structure
 
 ```
@@ -99,6 +112,10 @@ description: {One sentence describing when to use this skill. Include trigger ph
 ## How It Works
 
 {Numbered list explaining the skill's workflow}
+
+## Skills and Guidelines
+
+{Optional. Advise discovering available skills in host + repo; read relevant SKILL.md files; no fixed checklist.}
 
 ## Usage
 
