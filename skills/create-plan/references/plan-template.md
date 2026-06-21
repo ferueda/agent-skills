@@ -10,6 +10,18 @@ Three properties make a plan executable by a weaker model:
 
 File naming: `dev/plans/YYMMDD-short-slug.md`.
 
+## Skills for the executor — author workflow
+
+**Required before writing each plan.** The executor will not inherit your session's skill list — you must discover what's available and embed only verified recommendations in the plan file.
+
+1. **Host skills** — if the runtime injects an available-skills list, read every `name` and `description`; shortlist matches for this plan's work (implementation, review, testing, domain tooling).
+2. **Repo-local skills** — glob and read `SKILL.md` frontmatter under `skills/`, `.agents/skills/`, `.cursor/skills/`, and `.claude/skills/` in the target repo.
+3. **Repo guidance** — scan `AGENTS.md`, `CLAUDE.md`, and `README` for named skills, scripts, or MCP servers.
+4. **Match narrowly** — for each candidate, read its `SKILL.md` (description + When to Use). Recommend only when a specific plan step clearly falls in scope. One best skill per step beats a laundry list.
+5. **Verify or qualify** — cite the exact `name` from frontmatter. For repo-local skills, include the path (e.g. `skills/review-implementation/SKILL.md`). For host-global skills that may be missing elsewhere, prefix with "if available".
+
+**Skip the plan section only** after completing discovery with nothing relevant — write one line in the plan: "No matching skills found after checking …" (list what you checked).
+
 ---
 
 ## Template
@@ -63,18 +75,17 @@ The facts the executor needs, inlined — never "as discussed" or "see audit":
 
 (Exact commands from this repo — verified and not guessed.)
 
-## Suggested executor toolkit
+## Skills for the executor
 
-(Optional — include only after investigating the executor environment for useful
-repo-local skills, `.agents/skills`, `.cursor/skills`, scripts, MCP/tooling docs,
-and reference docs. Skip this section when nothing relevant is found. Do not
-invent tools or skills.)
+Invoke these **before** the step(s) listed — load the skill and follow it for that slice of work.
 
-- Skills the executor should invoke if available, and for what:
-  "use `skill-xyz` when writing the memoization in step 3".
-- Tools or scripts the executor should prefer, with exact command/path and when
-  to use them.
-- Reference docs worth reading before starting, by path or URL.
+| Skill | Why it fits | Use in step(s) |
+|-------|-------------|----------------|
+| `implement-plan` | Phase-by-phase execution with verification gates | whole plan |
+| `review-implementation` | Adversarial pass before marking done | after Step 3 |
+
+- **Scripts / MCP / tools** (optional): exact command, path, or server — and which step invokes it.
+- **Reference docs** (optional): path or URL to read before a specific step.
 
 ## Scope
 
@@ -119,7 +130,7 @@ Machine-checkable. ALL must hold:
 - [ ] `pnpm test` exits 0; new tests for <X> exist and pass
 - [ ] `grep -rn "<old pattern>" src/` returns no matches
 - [ ] No files outside the in-scope list are modified (`git status`)
-- [ ] `plans/README.md` status row updated
+- [ ] `dev/plans/README.md` status row updated
 
 ## STOP conditions
 
@@ -151,5 +162,6 @@ For the human/agent who owns this code after the change lands:
 - Are the STOP conditions specific to this plan's actual risks, not boilerplate?
 - Would a reviewer reading only "Why this matters" + "Done criteria" understand what they're approving?
 - No secret values anywhere in the file — locations and credential types only.
+- "Skills for the executor" lists only skills you verified exist; each row ties a skill to a specific step; no invented names.
 
 
