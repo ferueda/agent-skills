@@ -8,19 +8,16 @@ Three properties make a plan executable by a weaker model:
 2. **Verification gates** — every step ends with a command and its expected result. The executor never has to *judge* whether it succeeded.
 3. **Hard boundaries and escape hatches** — explicit out-of-scope list, and "STOP and report" conditions instead of letting the model improvise when reality doesn't match the plan.
 
-File naming: `dev/plans/YYMMDD-short-slug.md`.
+File naming: `dev/plans/YYMMDD-short-slug.md` (`YYMMDD` = plan date, slug = kebab-case summary). When writing several plans in one session, use the same date prefix and distinct slugs.
 
 ## Skills for the executor — author workflow
 
 **Required before writing each plan.** The executor will not inherit your session's skill list — you must discover what's available and embed only verified recommendations in the plan file.
 
 1. **Host skills** — if the runtime injects an available-skills list, read every `name` and `description`; shortlist matches for this plan's work (implementation, review, testing, domain tooling).
-2. **Repo-local skills** — glob and read `SKILL.md` frontmatter under `skills/`, `.agents/skills/`, `.cursor/skills/`, and `.claude/skills/` in the target repo.
-3. **Repo guidance** — scan `AGENTS.md`, `CLAUDE.md`, and `README` for named skills, scripts, or MCP servers.
-4. **Match narrowly** — for each candidate, read its `SKILL.md` (description + When to Use). Recommend only when a specific plan step clearly falls in scope. One best skill per step beats a laundry list.
-5. **Verify or qualify** — cite the exact `name` from frontmatter. For repo-local skills, include the path (e.g. `skills/review-implementation/SKILL.md`). For host-global skills that may be missing elsewhere, prefix with "if available".
+2. **Repo-local skills** — glob and read `SKILL.md` frontmatter under `skills/`, `.agents/skills/`, `.cursor/skills/`, and `.claude/skills/` in the audited repo.
 
-**Skip the plan section only** after completing discovery with nothing relevant — write one line in the plan: "No matching skills found after checking …" (list what you checked).
+**Skip the plan section only** after completing discovery with nothing relevant.
 
 ---
 
@@ -75,15 +72,14 @@ The facts the executor needs, inlined — never "as discussed" or "see audit":
 
 (Exact commands from this repo — verified and not guessed.)
 
-## Skills for the executor
+## Suggested executor toolkit
 
-Invoke these **before** the step(s) listed — load the skill and follow it for that slice of work.
+(Optional — include only when relevant skills/tools plausibly exist in the
+executor's environment. Skip the section otherwise.)
 
-| Skill | Why it fits | Use in step(s) |
-|-------|-------------|----------------|
-| `implement-plan` | Phase-by-phase execution with verification gates | whole plan |
-| `review-implementation` | Adversarial pass before marking done | after Step 3 |
-
+- Skills the executor should invoke if available, and for what:
+  "use `vercel-react-best-practices` when writing the memoization in step 3".
+- Reference docs worth reading before starting, by path or URL.
 - **Scripts / MCP / tools** (optional): exact command, path, or server — and which step invokes it.
 - **Reference docs** (optional): path or URL to read before a specific step.
 
