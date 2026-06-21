@@ -115,6 +115,8 @@ Exit codes: `0` success, `1` error, `2` usage.
 | `--format toon\|json` | Output format (default: toon) |
 | `--full` | Untruncated `result` |
 | `--verbose` | Include raw `usage` object |
+| `--max-runtime-ms <n>` | Overall wall-clock limit (default: 30 minutes) |
+| `--idle-timeout-ms <n>` | Optional no-output timeout; disabled by default because Cursor may be silent while tools run |
 | `--quiet` | Suppress stdout |
 | `--prompt-file`, `--stdin` | Prompt input |
 | `--sandbox enabled\|disabled` | Sandbox override |
