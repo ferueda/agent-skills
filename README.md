@@ -1,5 +1,8 @@
 # Agent Skills
 
+> **Archived:** this repository has moved to [`ferueda/harness`](https://github.com/ferueda/harness).
+> New skill, workflow, and automation work should happen there.
+
 A personal collection of skills for AI coding agents. Skills are packaged instructions that extend agent capabilities for planning, implementing, and reviewing code.
 
 Skills follow the [Agent Skills](https://agentskills.io/) format.
